@@ -14,7 +14,7 @@ public class EmailService {
         this.mailSender = mailSender;
     }
 
-    @Async
+//    @Async
     public void sendEmail(String email, String name) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(email);

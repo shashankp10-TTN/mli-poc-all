@@ -2,7 +2,6 @@ package com.poc.userservice.controller;
 
 import com.poc.userservice.dto.UserRequest;
 import com.poc.userservice.service.KafkaService;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DBController {
 
-    private final String TOPIC = "employee";
-    private final String GROUP_ID = "employee-group";
+//    private final String TOPIC = "employee";
+//    private final String GROUP_ID = "employee-group-db";
 
     private final ObjectMapper objectMapper;
     private final EmployeeService employeeService;
@@ -21,9 +21,10 @@ public class DBController {
         this.employeeService = employeeService;
     }
 
-    @KafkaListener(topics = TOPIC, groupId = GROUP_ID)
+    @KafkaListener(topics = "${spring.kafka.consumer.topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void consumeEmployeeData(String employeeRequest) {
         try {
+            System.out.println(employeeRequest.toString());
             EmployeeRequest employeeData = objectMapper.readValue(employeeRequest, EmployeeRequest.class);
             employeeService.saveEmployee(employeeData);
         } catch (JsonProcessingException ex) {

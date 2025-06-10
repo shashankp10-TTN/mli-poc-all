@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmailController {
 
-    private final String TOPIC = "employee";
-    private final String GROUP_ID = "employee-group";
+//    private final String TOPIC = "employee";
+//    private final String GROUP_ID = "employee-group-email";
 
     private final ObjectMapper objectMapper;
     private final EmailService emailService;
@@ -21,7 +21,7 @@ public class EmailController {
         this.emailService = emailService;
     }
 
-    @KafkaListener(topics = TOPIC, groupId = GROUP_ID)
+    @KafkaListener(topics = "${spring.kafka.consumer.topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void consumeEmployeeData(String employeeRequest) {
         System.out.println("Inside consumeEmployeeData method`");
         try {
